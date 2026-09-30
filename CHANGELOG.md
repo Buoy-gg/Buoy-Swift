@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (beta)
+
+- `BuoyAsyncImage` no longer reloads forever inside a `List` row. The row's height change restarted the load, which cancelled the request each time, so the image never appeared.
+- The Env tool no longer shows `BUOY_LICENSE_KEY`, so the account key from your Run scheme stays out of Buoy Desktop and MCP.
+- Time Machine reports its current route and restore results in the format Buoy Desktop and MCP read. They showed "[object Object]" and "undefined" before.
+- Tapping the navigation bar's back button through MCP now goes back.
+- The first Events read over MCP now includes requests made since launch. It returned an empty timeline until something else had opened the Network tool.
+
 ## 0.1.0 (beta)
 
 First public beta of the native iOS package for SwiftUI and UIKit hosts. It ships as a signed binary framework, needs iOS 16 or later and Xcode 16 or later, and works in apps that use Swift 5 or Swift 6 language mode.

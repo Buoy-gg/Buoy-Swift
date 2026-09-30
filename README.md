@@ -223,7 +223,7 @@ configuration or view instrumentation:
 | Impersonate | `BuoyImpersonate.configure` supplies user search and host callbacks. Data-clearing options are passed to the host; they do not clear JavaScript stores. |
 | Image Overlay | Mark targets with `.buoyImageOverlayTarget("Profile photo")`, or use free placement. |
 | Images | Use `BuoyAsyncImage` to exercise loading, failure, retry, blank and replacement states. `.buoyImage(url:)` measures an existing view without controlling its content. |
-| Notifications | Forward the APNs registration callback to `BuoyNotifications.observeDeviceToken(_:)`. Local test delivery still requires notification permission. |
+| Notifications | Call `BuoyNotifications.install()` early, after your app sets its own `UNUserNotificationCenter` delegate (or pass that delegate to it); capture starts there. Forward the APNs registration callback to `BuoyNotifications.observeDeviceToken(_:)`. Local test delivery still requires notification permission. |
 | Routes | Supply route patterns and navigation callbacks with `BuoyRoutes.configure`. Mark screens with `.buoyRoute(...)`, or supply the host's navigation stack. |
 
 For example, preserve your image's phase-specific content while enabling Images controls:
