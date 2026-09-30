@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 (beta)
+
+- Fixes a crash at launch in apps that call `BuoyNotifications.install()`. Versions 0.1.0 and 0.1.1 read notification permissions in a way that fails a Swift runtime check, so update to 0.1.2 before enabling Notifications.
+
 ## 0.1.1 (beta)
 
 - `BuoyAsyncImage` no longer reloads forever inside a `List` row. The row's height change restarted the load, which cancelled the request each time, so the image never appeared.
