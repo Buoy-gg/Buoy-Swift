@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3 (beta)
+
+- Sign in with a code. Set `config.signIn = BuoySignInConfig()`, then tap "BUOY · Sign in". The app shows a QR code and a short code. Scan it, or type it at buoy.gg/activate, then tap Allow. This works in TestFlight builds with no key in the app. Add `app:` and your bundle id to your sites at buoy.gg first.
+- Settings show "Signed in with Buoy" with a Sign out button while you're signed in.
+
 ## 0.1.2 (beta)
 
 - Fixes a crash at launch in apps that call `BuoyNotifications.install()`. Versions 0.1.0 and 0.1.1 read notification permissions in a way that fails a Swift runtime check, so update to 0.1.2 before enabling Notifications.
