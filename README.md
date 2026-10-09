@@ -2,7 +2,15 @@
 
 Add Buoy's developer tools to a native iOS app. Inspect the app on the device, connect it to Buoy Desktop, or use supported runtime actions through MCP.
 
-The package bundles Network, Console, Storage, Env, Impersonate, Image Overlay, Images, Notifications, Routes, Scenarios, Time Machine, Events, and Assets, plus app metadata and native UI interaction support. Tools that depend on JavaScript stores or React rendering are not included.
+The package has these tools:
+
+- Network, Console, Storage, and Env.
+- Impersonate, Image Overlay, Images, and Notifications.
+- Routes, Scenarios, Time Machine, Events, and Assets.
+- Clock, Lifecycle, Location, Permissions, Bench, Highlight, and Debug Borders.
+- Ask Buoy, with a model you set up.
+
+It also shares app facts. It can use native controls. It has no tools for JavaScript stores or React renders.
 
 This is a beta. The tools work with Buoy Desktop and MCP, but they do not match the React Native tools feature for feature; each section below lists what the native version leaves out. Report problems in the [issue tracker](https://github.com/Buoy-gg/Buoy-Swift/issues).
 
@@ -254,7 +262,7 @@ The native tool captures UserDefaults and registered MMKV instances, preserving 
 
 Register additional state with `BuoyTimeMachine.registerProvider(BuoySnapshotProvider(...))`. A provider returns keyed `BuoySnapshotItem` values and implements `restoreItem`; a nil payload means remove that item. Payloads must be JSON compatible. Provider capture failures abort the operation before restoration starts. Restore failures appear in the per-source outcome.
 
-Native capabilities expose 11 actions. In-process reload, fresh-install baselines, and wipe-all are not available. Keychain is excluded from the default provider. The floating bar supports capture, point selection, live restore, and a ten-second Undo action. RN's full preview grouping and filtering workflow is still pending.
+Time Machine has `captureBaseline` and `wipeAll`. To reload, add `Buoy.setReloadHandler(...)` in your app. It can save Keychain keys that you set up. It skips keys that need a face or fingerprint check. It skips Buoy's own keys too. The floating bar supports capture, point selection, live restore, and a ten-second Undo action. RN's full preview grouping and filtering workflow is still pending.
 
 ### Events
 

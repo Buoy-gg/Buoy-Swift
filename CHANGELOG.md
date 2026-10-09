@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.4 (beta)
+
+- Ask Buoy comes to Swift. Chat with it to check your app and use tools. Set up your model with `AskBuoyConfig` in `Buoy.start`.
+- Adds Clock, Lifecycle, Location, Permissions, Bench, Highlight, and Debug Borders. The build now reads the full tool list from SwiftPM. Ask Buoy's tool data ships in the framework too.
+- Long chats no longer freeze when the keyboard opens. The last reply and its buttons stay in view. The Changes list fits above the keyboard. Sheet headers stay on screen. The small chat icon sits below the status bar.
+- Tool calls keep number values, such as status codes and delays. Fields that take more than one type now accept those types. Undo can put back a number you removed from Storage.
+- Screen checks skip Buoy's own chat and controls. Screen reads hide them when asked.
+- Images report Swift as their source. Blank mode hides images that are on screen. Image Overlay reset clears both flips.
+- Storage keeps new events when you switch panel modes. Web call times now count the added wait.
+- Route moves wait in order and check the shown stack. A jump pushes a screen. With no live stack, the result says it is not checked.
+- Dev-only parts now work in your dev builds. Before, the binary always acted like a live build. Highlight did not record draws. Clock, Location and Lifecycle did not start. The Time Machine bar stayed hidden. Ask Buoy said "Release build" and blocked changes. Dev tokens were turned away. Buoy now checks your app's build when it runs.
+- Dev builds now work without a paid plan, like React Native. You still need to sign in or set a key. Live builds, like TestFlight and the App Store, still need a plan.
+- Two calls to the same web address are two rows, even 10 ms apart. A fast retry after a 401 no longer goes missing.
+- The image savings check says when no WebP encoder is set up. It used to say ok with no file. Set `ImageSavings.encodeWebP` to add one.
+- Ask Buoy can reset the route stack with `reset` on `navigate`.
+- Opening a link no longer says it is inactive. Time Machine's tool text now lists its native reset tools. It now says which Keychain keys it can save.
+
 ## 0.1.3 (beta)
 
 - Sign in with a code. Set `config.signIn = BuoySignInConfig()`, then tap "BUOY · Sign in". The app shows a QR code and a short code. Scan it, or type it at buoy.gg/activate, then tap Allow. This works in TestFlight builds with no key in the app. Add `app:` and your bundle id to your sites at buoy.gg first.
