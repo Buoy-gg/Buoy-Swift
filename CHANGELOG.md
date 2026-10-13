@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.5 (beta)
+
+- Hosted Ask Buoy now answers with Claude Haiku 5.5 first. GPT-6 Luna is its backup.
+- If Claude is down, Luna answers on its own. The other way round works too. If both are down, Ask Buoy says so: "Ask Buoy is down right now. We know, and we're working on it."
+- Pick your model in Ask Buoy's settings. You can also pick it on buoy.gg, on the Ask Buoy tab. Your pick syncs between the two. It starts with your next new chat.
+- The credits line now says about how many asks you have left.
+- The one-time note now says where your question goes: Anthropic for Claude, or OpenAI for Luna.
+
 ## 0.1.4 (beta)
 
 - Ask Buoy comes to Swift. Chat with it to check your app and use tools. Set up your model with `AskBuoyConfig` in `Buoy.start`.
