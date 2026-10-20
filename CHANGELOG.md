@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.1.6 (beta)
+
+Every Swift tool but Sentry now works like React Native. We ran React Native's own tool tests on the Swift app, and all 1,048 pass. Tests that need JavaScript are skipped. That covers Redux, Zustand, Jotai, React Query, JS Top and Three.
+
+- Your Buoy data is now saved where React Native saves it, in the same shape. That covers tool settings, Time Machine, Events, Routes, Scenarios and the license cache. Old saves move over once.
+- The license remembers its last answer. When the server says to wait, it waits. Times in it round down, like JavaScript. A free account no longer looks locked for a moment.
+- New floating tools: `openFloatingTool`, `dismissFloatingTool`, `registerPersistentFloatingTool` and `BuoyFloatingTool`. They work like React Native's.
+- New `NetworkConditionsControl` view. It sets slow or offline web calls, like React Native's.
+- New Clock timers: `BuoyClock.after`, `BuoyClock.every` and `BuoyClock.sleep`. They follow the Clock tool when you jump the time.
+- Storage logs each UserDefaults write as its own event, even a write that repeats a value. A typed edit saves after 300 ms. Pins use the key name. Buoy's own keys stay out of the list.
+- Events shows only what happened after it started. Web calls from before then count as old. Clear works. The list keeps 200 events. The render source starts off, like React Native.
+- Time Machine keeps one file per snapshot, like React Native. It can save Keychain items. Its bar opens with a tap, so a drag can't hide it.
+- Routes reads `/user/[id]` as dynamic. Names look like Expo's, such as `route-bench/[step]`. Only repeated route events fold together. The list holds still while paused.
+- Scenarios has React Native's 14 demo scenarios. The recorder now plays back long presses, switches and sliders.
+- Location uses the Permissions tool's answer. A one-time read works while a watch runs. Fences draw on top of places on the map.
+- Notifications read the reply text a user types. They see the tap that opened the app. A banner no longer shows unless you asked for one.
+- Assets: `UIImage(named:)` marks its file as loaded on its own. For SwiftUI's `Image("name")`, still call `markLoaded`.
+- Images keeps one record per view, sized like the view.
+- Impersonate: wipe and sign out work like React Native. A bad pattern no longer breaks it.
+- Console shows Buoy's own logs and keeps logs when Preserve is on.
+- Bench no longer shows a Reanimated row. Swift has no worklet thread.
+- Debug Borders finds SwiftUI ids. Highlight now shows the "state" and "parent" reasons for a draw.
+- Ask Buoy's sheet springs back 2.5 s after it drops, like React Native.
+- Every press style takes taps across its whole row.
+
+These two came out in 0.1.5 but were left out of its notes:
+
+- Buoy sends a small, anonymous ping once a day. It only runs in dev builds, never in an app you ship. It holds a random id, the Buoy version, the platform, your plan and "swift". It holds no app or tool data. Turn it off with `config.telemetry = false`. Read more at buoy.gg/buoy/latest/docs/telemetry.
+- A Pro app no longer shows as free for a few seconds after it starts. A sign-in let the app in before its Pro key was checked. In that gap, the app told Buoy it was free. AI agents then got "needs Buoy Pro" and stopped. Now the app waits for its key before it says free. A Pro answer still goes out right away.
+
 ## 0.1.5 (beta)
 
 - Hosted Ask Buoy now answers with Claude Haiku 5.5 first. GPT-6 Luna is its backup.

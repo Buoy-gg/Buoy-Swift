@@ -10,9 +10,9 @@ The package has these tools:
 - Clock, Lifecycle, Location, Permissions, Bench, Highlight, and Debug Borders.
 - Ask Buoy, with a model you set up.
 
-It also shares app facts. It can use native controls. It has no tools for JavaScript stores or React renders.
+It also shares app facts. It can use native controls. It has no tools for JavaScript stores, such as Redux or React Query.
 
-This is a beta. The tools work with Buoy Desktop and MCP, but they do not match the React Native tools feature for feature; each section below lists what the native version leaves out. Report problems in the [issue tracker](https://github.com/Buoy-gg/Buoy-Swift/issues).
+This is a beta. Each tool works like its React Native version. We check that by running React Native's own tool tests on the Swift app. Each section below says where Swift is different. Report problems in the [issue tracker](https://github.com/Buoy-gg/Buoy-Swift/issues).
 
 ## Requirements
 
@@ -203,7 +203,7 @@ The SDK does not add an MMKV dependency to apps that do not use it.
 
 `BuoyScenarios.define(...)` registers a scenario from app code. Remote `scenarios.save` calls enter the draft inbox; review and accept a draft before running it. The runner checks native action availability and variables before the first step, records applied effects, and supports explicit undo recipes. Library entries and active effects survive restart. Execution is disabled in production builds. The native UI includes draft review, typed variable controls, a step preview, and a partial-run report with retry and cleanup actions.
 
-Record a flow captures supported host taps and text, adds waits for observed navigation, and opens a review before saving. Buoy controls and secure text inputs are excluded. Recording requires a development build and an accessible host UI. Scroll gestures, slider replay, long-press replay, and native state-store shortcuts are not supported. Physical-touch capture still needs device QA; MCP-driven capture and replay have been exercised in the simulator.
+Record a flow captures supported host taps and text, adds waits for observed navigation, and opens a review before saving. Buoy controls and secure text inputs are excluded. Recording requires a development build and an accessible host UI. It also records long presses, switches and sliders. Scroll gestures and native state-store shortcuts are not supported. Physical-touch capture still needs device QA; MCP-driven capture and replay have been exercised in the simulator.
 
 ## Access and lifecycle
 
@@ -268,13 +268,13 @@ Time Machine has `captureBaseline` and `wipeAll`. To reload, add `Buoy.setReload
 
 Events combines captured Network, UserDefaults/MMKV, and Routes activity. The native UI supports source filters, search, pause, clear, copy, and JSON detail. MCP exposes `clearEvents`, `setEnabledSources`, and `exportEvents`. UI and remote consumers retain their own source selections, so turning a remote source off does not stop the open on-device view from capturing it.
 
-Native export supports the common presets and JSON, Markdown, plain text, and Mermaid output. Supported settings are `format`, `includeEventData`, `includeSource`, `includeStatus`, `includeTitle`, `includeSubtitle`, `includeSummaryHeader`, `filterMode`, `filterSources`, `dataSizeThreshold`, and `timestampFormat`. Other settings are rejected. The Copy Settings screen selects the export preset and whether to include event data. On-device copy respects selected sources. Source-specific interactive detail pages remain pending; payloads inherit source snapshot limits. React store and render events are unavailable.
+Native export supports the common presets and JSON, Markdown, plain text, and Mermaid output. Supported settings are `format`, `includeEventData`, `includeSource`, `includeStatus`, `includeTitle`, `includeSubtitle`, `includeSummaryHeader`, `filterMode`, `filterSources`, `dataSizeThreshold`, and `timestampFormat`. Other settings are rejected. The Copy Settings screen selects the export preset and whether to include event data. On-device copy respects selected sources. Source-specific interactive detail pages remain pending; payloads inherit source snapshot limits. Highlight's draws show up as a Render source. It starts off, like React Native. React store events are not there.
 
 ### Assets
 
-Assets scans loose resources in the app bundle, measures their file sizes, detects duplicate content, and saves a comparison baseline. Its nine MCP actions use the existing Assets contract. Add an app resource bundle with `BuoyAssets.registerBundle(...)`; call `BuoyAssets.markLoaded(url)` after the app loads a resource. Buoy's UI bundles and preview images are excluded from capture.
+Assets scans loose resources in the app bundle, measures their file sizes, detects duplicate content, and saves a comparison baseline. Its nine MCP actions use the existing Assets contract. Add an app resource bundle with `BuoyAssets.registerBundle(...)`; `UIImage(named:)` marks its files as loaded on its own. SwiftUI's `Image("name")` does not go through UIImage, so call `BuoyAssets.markLoaded(url)` after those loads. Buoy's UI bundles and preview images are excluded from capture.
 
-Coverage is partial: compiled `Assets.car` files appear as aggregate records, embedded bundles require explicit registration, and loaded status is host reported. An unobserved resource is not necessarily unused. Scale-variant and decoded-memory findings are not implemented. Read `scanStatus.coverage` and `warnings` before interpreting the inventory.
+Coverage is partial: compiled `Assets.car` files appear as aggregate records, embedded bundles require explicit registration, and loaded status comes from `UIImage(named:)` and your `markLoaded` calls. An unobserved resource is not necessarily unused. Scale-variant and decoded-memory findings are not implemented. Read `scanStatus.coverage` and `warnings` before interpreting the inventory.
 
 ### Privacy manifest
 
