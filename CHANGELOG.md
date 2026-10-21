@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.8 (beta)
+
+- Routes works in UIKit apps with no setup. Buoy reads the screens from your view controllers: the tab you're on, its navigation stack and anything shown on top. `ArticleViewController` shows up as `/article`, with its title as a param. Going back works too. Events and Time Machine get the screen as well. Your own `BuoyRoutes.configure` or `.buoyRoute` still wins. Turn it off with `BuoyRoutes.trackUIKitScreens = false`.
+- A tool's panel saves its size and spot as soon as it opens, like React Native. Before, it saved only after you dragged or resized it.
+- An undo from Buoy Desktop or MCP now stays done after a restart. So does an undo in the tool itself. Before, Ask Buoy said those changes were not undone.
+
 ## 0.1.7 (beta)
 
 We ran Buoy in the Wikipedia and Mastodon apps. These fixes came from that.
