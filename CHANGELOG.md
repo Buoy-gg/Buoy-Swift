@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.7 (beta)
+
+We ran Buoy in the Wikipedia and Mastodon apps. These fixes came from that.
+
+- Ask Buoy's second message with Claude no longer fails. It sent back Claude's notes from the last message, and Claude said no. Now it sends only this message's notes, like React Native.
+- An app with no key now shows "Sign in". It used to say "Checking…" and never stop.
+- The daily ping keeps its id in Buoy's own files, like React Native. Your app's storage list no longer shows it. An id from 0.1.6 moves over once.
+- Over MCP, one web call now shows its method, its link and its status. It also says when an override sent the answer.
+- AI agents can open the Buoy menu and Settings by name. So can VoiceOver.
+- Agents can tap Buoy's own Settings and its first card while the dial is open.
+
 ## 0.1.6 (beta)
 
 Every Swift tool but Sentry now works like React Native. We ran React Native's own tool tests on the Swift app, and all 1,048 pass. Tests that need JavaScript are skipped. That covers Redux, Zustand, Jotai, React Query, JS Top and Three.
