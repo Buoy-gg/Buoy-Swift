@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.9 (beta)
+
+- Team roles. A team admin picks the tools each role sees, on the Team page at buoy.gg. Your menu then shows only those Buoy tools. Your app's own tools always show. A role with no list sees every tool.
+- A tool that is open closes when your role hides it.
+- If your role has no tools, the dial says so. Settings shows your role.
+- Help text now gives the full sign-in command, `npx --package=@buoy-gg/core buoy login`. The short `npx buoy login` ran a package that isn't ours.
+- Ask Buoy no longer calls your app "a React Native app" when it doesn't know the app's name.
+
 ## 0.1.8 (beta)
 
 - Routes works in UIKit apps with no setup. Buoy reads the screens from your view controllers: the tab you're on, its navigation stack and anything shown on top. `ArticleViewController` shows up as `/article`, with its title as a param. Going back works too. Events and Time Machine get the screen as well. Your own `BuoyRoutes.configure` or `.buoyRoute` still wins. Turn it off with `BuoyRoutes.trackUIKitScreens = false`.
