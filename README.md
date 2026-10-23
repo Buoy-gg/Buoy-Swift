@@ -17,7 +17,7 @@ This is a beta. Each tool works like its React Native version. We check that by 
 ## Requirements
 
 - An iOS app targeting iOS 16 or later, built with Xcode 16 or later.
-- A Free or Pro Buoy account key. Get a key through your [Buoy account](https://buoy.gg).
+- A Free or Pro [Buoy account](https://buoy.gg).
 - A development build for the first setup and verification.
 
 Buoy ships as a prebuilt, signed framework for iOS devices and the iOS Simulator. Mac Catalyst and macOS are not supported.
@@ -40,9 +40,21 @@ In a `Package.swift` manifest:
 
 Import it with `import Buoy`. Every tool is part of that one module.
 
-## SwiftUI setup
+## Sign in
 
-In your app's Xcode Run scheme, add a `BUOY_LICENSE_KEY` environment variable containing your account key. The example reads that variable from the launched process. It is not automatically available when the app is launched outside that scheme; use your app's configuration mechanism for other internal builds.
+Sign in from your project folder:
+
+```bash
+npx --package=@buoy-gg/core buoy login
+```
+
+It writes a dev token to `.env.local` as `BUOY_LICENSE_KEY`. Add `BUOY_LICENSE_KEY` to your app's Xcode Run scheme, under Environment Variables. Buoy reads it by itself. Xcode passes it only when it runs the app from that scheme. The token works in dev builds for 30 days.
+
+TestFlight and QA builds sign in with a code instead. Set `config.signIn = BuoySignInConfig()`. Then add `app:` and your bundle id at [buoy.gg/dashboard/sites](https://buoy.gg/dashboard/sites). Those builds need a Pro or Business plan. `#if DEBUG` leaves Buoy out of them, so use your own flag there.
+
+You can still use your account key. Put it in `BUOY_LICENSE_KEY`, or pass it in with `config.licenseKey`.
+
+## SwiftUI setup
 
 This minimal app starts Buoy before creating a test URLSession. It gates both startup and the overlay with the app's `DEBUG` compilation condition:
 
@@ -58,7 +70,6 @@ struct BuoyDemoApp: App {
         #if DEBUG
         var config = BuoyConfig()
         config.deviceName = "Swift demo"
-        config.licenseKey = ProcessInfo.processInfo.environment["BUOY_LICENSE_KEY"]
         Buoy.start(config)
         #endif
     }
@@ -116,7 +127,7 @@ If the request is absent, confirm that the button made a fresh request, the sess
 
 ## UIKit setup
 
-Call `Buoy.start(config)` on the main actor early in your app lifecycle, using the same account configuration and compilation guard as the SwiftUI example. After creating your app window, install the overlay in its UIWindowScene:
+Call `Buoy.start(config)` early, on the main actor. Sign-in works the same way. Use the same `#if DEBUG` guard as the SwiftUI example. After you make your app window, install the overlay in its UIWindowScene:
 
 ```swift
 #if DEBUG
@@ -134,7 +145,6 @@ For an iPhone or iPad, point Buoy at the computer's LAN address. The quickest wa
 
 ```swift
 var config = BuoyConfig()
-config.licenseKey = ProcessInfo.processInfo.environment["BUOY_LICENSE_KEY"]
 if let brokerURL = URL(string: "http://192.168.1.20:42831") {
     config.socketURL = brokerURL
 }
