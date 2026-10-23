@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.11 (beta)
+
+- Ask Buoy matches the newest React Native engine. Undo a fake web reply, and the screen loads fresh data. Undo All says how many steps it undid. A broken tool call from the AI gets fixed when it can.
+- Ask Buoy pick lists work like React Native. A long list shows every choice. The count of more choices only counts the ones that match your search.
+- If Ask Buoy is turned down, or runs out of steps, the chat ends with an error card. A dropped connection is tried once more.
+- A tap that finds nothing now fails out loud.
+- A phone set up from another phone's backup now gets its own device ID. Before, it kept the old phone's ID, so the two phones counted as one device. App updates keep the same ID.
+- `BuoyAsyncImage` shows an image at full size again. A small placeholder had made it small and blurry. In a set frame, it still loads at the frame's size, like React Native.
+- Env hides every Buoy key name, from every place, `Info.plist` too.
+- Events export filters first, then cuts to the limit.
+- The data explorer shows every child now.
+- Jank labels use the same 66% line as the counts.
+- Network Clear works while capture is off. Before, the old rows stayed on screen.
+- The Routes tree matches React Native. Catch-all routes sort last.
+- Time Machine wipes leave switched-off sources alone. Snapshots are saved before old ones are deleted.
+- Team admins can hide Memory Leaks and OTA Updates.
+
 ## 0.1.10 (beta)
 
 - `Buoy.start` now adds the Buoy overlay by itself. You don't need `.buoyDevTools()` anymore. Use it only to set options. Set `headless = true` to show no Buoy UI.
