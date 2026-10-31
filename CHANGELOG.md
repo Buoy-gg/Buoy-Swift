@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.12 (beta)
+
+- New tool: Bug Links. Tap the bug button once. Buoy saves the app's state, web calls, logs and taps. It copies a link to the bug. A teammate opens the link and sees the same bug.
+- Bugs are locked on the phone. Buoy keeps your team's key, so signing in just works. Buoy never opens a bug unless your team asks.
+- The team bug list shows your team's bugs in the app. Tap Load to open one in your dev build.
+- If Ask Buoy's first model fails, the backup model now gets the same question. Before, the server turned it away as a repeat.
+
 ## 0.1.11 (beta)
 
 - Ask Buoy matches the newest React Native engine. Undo a fake web reply, and the screen loads fresh data. Undo All says how many steps it undid. A broken tool call from the AI gets fixed when it can.
