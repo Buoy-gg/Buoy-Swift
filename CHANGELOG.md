@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.14 (beta)
+
+- A loaded bug's block no longer stops Buoy's own sign-in. Before, the pill said to sign in, but that sign-in could fail.
+- The FAKE NETWORK pill now builds on Xcode 16.
+
 ## 0.1.13 (beta)
 
 - Scenarios, Network rules, slow or offline modes and bug loading now work in release builds. That means ad hoc, TestFlight and App Store builds. They need a paid plan and the Buoy menu on screen.
