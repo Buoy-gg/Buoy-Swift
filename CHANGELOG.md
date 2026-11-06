@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.13 (beta)
+
+- Scenarios, Network rules, slow or offline modes and bug loading now work in release builds. That means ad hoc, TestFlight and App Store builds. They need a paid plan and the Buoy menu on screen.
+- An amber FAKE NETWORK pill shows while a rule or a speed setting is on. Press and hold it to stop.
+- With no paid plan or no menu, saved rules and scenarios do nothing.
+- If your plan or sign-in ends while a bug is loaded, the recorded replies stop. Every web call stays blocked, so the bug's data can't reach real servers. A pill says so. Sign in to fix it, or hold the pill two times to use real calls. If no one does, the block ends by itself after 24 hours.
+- Record a flow still needs a dev build.
+
 ## 0.1.12 (beta)
 
 - New tool: Bug Links. Tap the bug button once. Buoy saves the app's state, web calls, logs and taps. It copies a link to the bug. A teammate opens the link and sees the same bug.

@@ -11,8 +11,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Buoy",
-            url: "https://github.com/Buoy-gg/Buoy-Swift/releases/download/0.1.12/Buoy-0.1.12.xcframework.zip",
-            checksum: "9a4e9815a7419e881b19ac324b9e790372488968f83eac788f6d96e377d870d5"
+            url: "https://github.com/Buoy-gg/Buoy-Swift/releases/download/0.1.13/Buoy-0.1.13.xcframework.zip",
+            checksum: "01ebf49efb9079af1b3dbafed97ebeb9bd821c91aded4fdc0a6425d344e6b3aa"
         ),
     ]
 )

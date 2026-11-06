@@ -211,7 +211,7 @@ The SDK does not add an MMKV dependency to apps that do not use it.
 
 ### Scenarios
 
-`BuoyScenarios.define(...)` registers a scenario from app code. Remote `scenarios.save` calls enter the draft inbox; review and accept a draft before running it. The runner checks native action availability and variables before the first step, records applied effects, and supports explicit undo recipes. Library entries and active effects survive restart. Execution is disabled in production builds. The native UI includes draft review, typed variable controls, a step preview, and a partial-run report with retry and cleanup actions.
+`BuoyScenarios.define(...)` registers a scenario from app code. Remote `scenarios.save` calls enter the draft inbox; review and accept a draft before running it. The runner checks native action availability and variables before the first step, records applied effects, and supports explicit undo recipes. Library entries and active effects survive restart. In a release build, running a scenario needs a paid plan and the Buoy menu on screen. The native UI includes draft review, typed variable controls, a step preview, and a partial-run report with retry and cleanup actions.
 
 Record a flow captures supported host taps and text, adds waits for observed navigation, and opens a review before saving. Buoy controls and secure text inputs are excluded. Recording requires a development build and an accessible host UI. It also records long presses, switches and sliders. Scroll gestures and native state-store shortcuts are not supported. Physical-touch capture still needs device QA; MCP-driven capture and replay have been exercised in the simulator.
 
