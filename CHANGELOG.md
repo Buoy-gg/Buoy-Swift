@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.15 (beta)
+
+- In a release build, the header that acts as another user now needs a paid plan and the Buoy menu on screen.
+- A bug report keeps each saved value's type, even when its name sounds secret. Before, a report like that could fail to load.
+
 ## 0.1.14 (beta)
 
 - A loaded bug's block no longer stops Buoy's own sign-in. Before, the pill said to sign in, but that sign-in could fail.
