@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.16 (beta)
+
+- Tokens, cookies and keys are now hidden before they leave the app. Buoy Desktop shows `[hidden by Buoy]` in their place.
+- In a debug build, click Secrets hidden in Buoy Desktop to see the real values. A release build always hides them.
+- Bug Links can now only be pointed at buoy.gg, your app's server or a local dev server.
+
 ## 0.1.15 (beta)
 
 - In a release build, the header that acts as another user now needs a paid plan and the Buoy menu on screen.
