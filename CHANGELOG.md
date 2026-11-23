@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.1.17 (beta)
+
+- Pushing a fake message into a socket, or sending one, no longer crashes the app on iOS 18 and older.
+- Taps in a bug case now have their real time. Each tap picture sits next to its own tap.
+- A part inside `buoyMask` is boxed even when it sticks out past the mask's edge.
+- Signing out ends a socket Block or Freeze, so the app's messages flow again.
+- A socket made with `URLSession.shared` shows as open right away. It used to wait for its first message.
+- Stopping an Ask Buoy turn also stops the AI call it was waiting on.
+- A hidden secret in a link shows `[hidden by Buoy]` once, not twice.
+- Network now has a Sockets screen. It shows each WebSocket your app opens with `URLSessionWebSocketTask`. You see each message sent and got. You also see when a socket opens, closes or has an error.
+- A reply is tied to the message that asked for it. Buoy shows how long the reply took.
+- Problems turn red. A reply may never come. A socket may reconnect too much or fail to sign in again and again. It may not connect at all. Two sockets may be open at once. The app may send on a closed socket.
+- Tokens and passwords in a message show as [hidden]. Buoy hides them before it keeps the message.
+- Tricks (Pro) can push a fake message into your app. They can also drop, kick out, freeze or block a socket.
+- The sockets list goes to Desktop and to the MCP `get_sockets` tool. `socket_action` works too.
+- Bug Links cases now have pictures of the app. Each tap gets a picture too. Password fields are always boxed out. Text and images are boxed out too. So are text fields. You can turn that off. Mark your own secret parts with `buoyMask`. A case that is too big keeps fewer pictures. Cases with pictures from other phones keep them when they load here.
+- Ask Buoy now uses Buoy's own AI if you set nothing up. A config with its own endpoint works the same as before.
+- A hint you close now stays closed on all your devices. The list is saved on your account.
+- Settings now has Hide Buoy. Hide it for 5 minutes, 1 hour, the rest of today, or until you turn it back on. Tap the top left corner five times to bring it back. Code can call `Buoy.hide()` and `Buoy.show()`.
+- The Show Buoy switch on buoy.gg can hide Buoy in all your apps.
+- The first-run hints have a new look. They all use one dark card with a green Got it button.
+- The sign-in card has an Open buoy.gg button above the QR code.
+- You can now sign out of a Buoy key on the Pro tab. The key stays off, even when the app starts again. Tap Use the Buoy key again to get it back.
+- If you just paid, you get Pro sooner. When the app starts or comes back, Buoy asks buoy.gg for your plan. It asks once your sign-in is 5 minutes old.
+- If you are signed in but this build needs a paid plan, the button says Plan needed. Tap it, and Buoy checks your plan right away.
+- Ask Buoy no longer hides a `{{secret:NAME}}` stand-in. It holds no secret. A real password is still hidden.
+- Ask Buoy can make lots of fake rows in one step. It writes one row and a count, and the app fills in the rest. Names, emails, dates and more look real.
+- `{{image:1200x400}}` makes a test picture of that exact size on the phone. Each row gets its own color and number.
+- New rows can be added to a list with `$append`. They copy the fields they leave out from a real row.
+- When every step works, Ask Buoy can stop after one round. You wait less.
+- Apps can give Ask Buoy mock recipes with `defineMocks`, `apiListRecipe` and `failRecipe`. A plain ask like "add 40 friends" or `/mock friends 40` runs on the phone with no AI call.
+- A recipe can name its screen. Then it only runs while that screen is open.
+- A recipe can make web calls fail. They can fail every time, every other time, or once and then work.
+- A Network rule can now fail each call once and let its retry through (`firstTry`).
+- Mock rows end when the app restarts, so a bad row can't break every launch. The chat says the mock data was cleared.
+- A recipe can add rows to a list the app has not loaded yet. The rows show up the first time it loads.
+- Plain asks run with no AI call. Some are "go offline", "back online", "undo that" and "tap the Privacy tab".
+- Apps can give each screen a note with `ContextPack.screens`. Ask Buoy picks screens by their notes.
+- "503 on the store api" now makes that error happen. A question about an error only reads.
+- In a release build, Ask Buoy asks before it taps. A card for typing into a field never shows the text.
+
 ## 0.1.16 (beta)
 
 - Tokens, cookies and keys are now hidden before they leave the app. Buoy Desktop shows `[hidden by Buoy]` in their place.
